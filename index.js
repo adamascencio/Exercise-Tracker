@@ -7,7 +7,7 @@ require('./config/database')
 
 app.use(cors())
 app.use(express.json())
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use('/api/users', require('./routes/api/users'))
 
 app.get('/', (req, res) => {
