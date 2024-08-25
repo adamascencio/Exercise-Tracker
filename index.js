@@ -10,7 +10,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/api/users', require('./routes/api/users'))
-app.use('/api/exercises', require('./routes/api/exercises'))
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
