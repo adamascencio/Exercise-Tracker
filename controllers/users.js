@@ -18,7 +18,12 @@ async function create(req, res) {
 async function getAllUsers(req, res) {
   try {
     const users = await User.find({});
-    res.json(users);
+    res.json(users.map(user => {
+      return {
+        username: user.name,
+        _id: user._id
+      }
+    }));
   } catch (err) {
     res.json({ data: err });
   }
