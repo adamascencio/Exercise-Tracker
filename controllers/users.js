@@ -18,7 +18,7 @@ async function create(req, res) {
 async function getAllUsers(req, res) {
   try {
     const users = await User.find({});
-    res.json({ data: users });
+    res.json(users);
   } catch (err) {
     res.json({ data: err });
   }
