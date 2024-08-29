@@ -67,9 +67,18 @@ async function showLogs (req, res) {
 
     const exercises = await Exercise.find(query)
       .limit(limit);
+    const filteredExercises = exercises.map(({ duration, description, date }) => (
+      { 
+        description, 
+        duration, 
+        date: date.toDateString()
+      }
+    ));
     return res.json({
+      username: user.name,
       count: exercises.length,
-      log: exercises,
+      _id: user._id,
+      log: filteredExercises,
     })
   } catch (err) {
     res.json({ error: err });
