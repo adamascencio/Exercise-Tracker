@@ -8,7 +8,8 @@ module.exports = {
 };
 
 async function create(req, res) {
-  const { id, description, duration } = req.body;
+  const { description, duration } = req.body;
+  const id = req.params.id;
   let date;
   
   if (!req.body.date) {
@@ -36,6 +37,7 @@ async function create(req, res) {
       description: exercise.description
     })
   } catch (err) {
+    console.log(`Exercise failed to save:\n${err}\n`)
     res.json({ error: err });
   }
 }
