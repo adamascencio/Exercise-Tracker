@@ -8,12 +8,15 @@ module.exports = {
 };
 
 async function create(req, res) {
-  const { id, description, duration, date } = req.body;
-  const dateOptions = {
-    weekday: 'short',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+  const { id, description, duration } = req.body;
+  let date;
+  
+  if (!req.body.date) {
+    date = (new Date(Date.now())).toDateString()
+  } else {
+    const dateArr = req.body.date.split('-');
+    const [year, month, day] = dateArr;
+    date = new Date(parseInt(year), (parseInt(month) - 1), parseInt(day)).toDateString();
   }
 
   try {
@@ -22,18 +25,18 @@ async function create(req, res) {
       username: user.name,
       description,
       duration,
-      date: date ? date : new Date().toLocaleDateString('en-US', dateOptions)
+      date
     });
     await exercise.save();
     res.json({
-      "_id": user._id,
-      "username": user.name,
-      "description": exercise.description,
-      "duration": exercise.duration,
-      "date": exercise.date
+      _id: user._id,
+      username: user.name,
+      date,
+      duration: exercise.duration,
+      description: exercise.description
     })
   } catch (err) {
-    res.json({ data: err });
+    res.json({ error: err });
   }
 }
 
