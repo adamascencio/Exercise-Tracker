@@ -10,4 +10,14 @@ const exerciseSchema = new Schema({
   timestamps: true
 });
 
+exerciseSchema.set('toJSON', {
+  transform: (doc, ret) => {
+    delete ret.createdAt;
+    delete ret.updatedAt;
+    delete ret.__v;
+    ret.date = ret.date.toDateString();
+    return ret
+  }
+});
+
 module.exports = mongoose.model('Exercise', exerciseSchema);
