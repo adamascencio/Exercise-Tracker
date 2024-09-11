@@ -20,6 +20,22 @@ async function create(req, res) {
   }
 }
 
+async function login(req, res) {
+  try {
+    const { username, password } = req.body;
+    const user = await User.findOne({ name: username });
+
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid username' });
+    } else {
+      const token = jwt.sign({ username }, process.env.SECRET, { expiresIn: '24h' });
+      return res.status(200).json({ token });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+}
+
 async function getAllUsers(req, res) {
   try {
     const users = await User.find({});
