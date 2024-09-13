@@ -7,12 +7,35 @@
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <form action="/api/users" method="post">
-    <h2>Login/Create User</h2>
-    <p><code>POST /api/users</code></p>
+  <form method="POST">
+    <h2>Create User</h2>
     <input id="uname" type="text" name="username" placeholder="username" />
     <input id="pw" type="text" name="password" placeholder="password" />
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Create Account" />
   </form>
+  <button id="toggleButton">Sign in</button>
+  <script>
+    const h2 = document.querySelector("h2");
+    const form = document.querySelector("form");
+    const submitButton = form.querySelector("input[type='submit']");
+    const toggleButton = document.getElementById("toggleButton");
+    let isLogin = false;
+
+    toggleButton.addEventListener('click', () => {
+      isLogin = !isLogin;
+
+      if (isLogin) {
+        h2.textContent = 'Login';
+        form.action = '/api/login';
+        submitButton.value = 'Login';
+        toggleButton.textContent = 'Sign up';
+      } else {
+        h2.textContent = 'Create User';
+        form.action = '/api/users';
+        submitButton.value = 'Create Account';
+        toggleButton.textContent = 'Sign in';
+      }
+    });
+  </script>
 </body>
 </html>
