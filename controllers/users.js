@@ -26,15 +26,19 @@ async function login(req, res) {
     const { username, password } = req.body;
     const user = await User.findOne({ name: username });
 
-    if (!user) {
-      return res.status(401).json({ error: 'Invalid username' });
-    } else {
-      const token = jwt.sign({ username }, process.env.SECRET, { expiresIn: '24h' });
+    if (!user) return res.status(401).json({ error: 'Invalid username' });
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (isPasswordValid) {
+      const token = jwt.sign({ userID: user._id }, process.env.SECRET, { expiresIn: '24h' });
       return res.status(200).json({ token });
+    } else {
+      return res.status(401).json({ error: 'Invalid password' });
     }
-  } catch (err) {
-    res.status(500).json({ error: err });
-  }
+    } catch (err) {
+      return res.status(500).json({ error: err });
+    }
 }
 
 async function getAllUsers(req, res) {
