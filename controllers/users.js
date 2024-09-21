@@ -11,10 +11,9 @@ module.exports = {
 async function create(req, res) {
   try {
     const { username, password } = req.body;
-    const hash = await bcrypt.hash(password, 10);
-    const user = await User.create({ name: username, password: hash });
+    const user = await User.create({ name: username, password });
     await user.save();
-    const token = jwt.sign({ username }, process.env.SECRET, { expiresIn: '24h' });
+    const token = jwt.sign({ userID: user._id, username }, process.env.SECRET, { expiresIn: '24h' });
     res.status(200).json({ token });
   } catch (err) {
     res.status(500).json({ error: err });
