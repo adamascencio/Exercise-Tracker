@@ -22,7 +22,8 @@ const sendRequest = async (url, payload = null, method = 'POST') => {
   }
   const res = await fetch(url, options);
   if (res.ok) return res.json();
-  throw new Error('Bad Request');
+  console.log(res);
+  throw new Error('Bad Request')
 }
 
 const navToHomepage = data => {
