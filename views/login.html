@@ -7,35 +7,14 @@
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <form method="POST">
+  <form>
     <h2>Create User</h2>
     <input id="uname" type="text" name="username" placeholder="username" />
     <input id="pw" type="text" name="password" placeholder="password" />
     <input type="submit" value="Create Account" />
   </form>
   <button id="toggleButton">Sign in</button>
-  <script>
-    const h2 = document.querySelector("h2");
-    const form = document.querySelector("form");
-    const submitButton = form.querySelector("input[type='submit']");
-    const toggleButton = document.getElementById("toggleButton");
-    let isLogin = false;
-
-    toggleButton.addEventListener('click', () => {
-      isLogin = !isLogin;
-
-      if (isLogin) {
-        h2.textContent = 'Login';
-        form.action = '/api/users/login';
-        submitButton.value = 'Login';
-        toggleButton.textContent = 'Sign up';
-      } else {
-        h2.textContent = 'Create User';
-        form.action = '/api/users';
-        submitButton.value = 'Create Account';
-        toggleButton.textContent = 'Sign in';
-      }
-    });
-  </script>
+  <script src="/js/manageTokens.js" type="module"></script>
+  <script src="/js/users-service.js" type="module"></script>
 </body>
 </html>
