@@ -6,6 +6,7 @@ const exercisesCtrl = require('../../controllers/exercises');
 router.get('/:id/exercises', exercisesCtrl.showAllExercises);
 router.get('/:id/logs', exercisesCtrl.showLogs);
 router.get('/', usersCtrl.getAllUsers);
+router.post('/login', usersCtrl.login);
 router.post('/:id/exercises', exercisesCtrl.create);
 router.post('/', usersCtrl.create);
 

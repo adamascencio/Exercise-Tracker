@@ -15,5 +15,9 @@ Additional project requirements can be found [here](https://www.freecodecamp.org
 - Add authentication to the app
 - Implement new front-end design
 
+## Completed
+- User Account Creation
+- Authentication via JWT
+
 ## Certification Project Link
 [Click to view project](https://exercise-tracker-fdfte0ajfxfddsdm.westus-01.azurewebsites.net/)
