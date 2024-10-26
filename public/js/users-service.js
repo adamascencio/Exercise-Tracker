@@ -8,6 +8,12 @@ let isLogin = false;
 
 form.action = '/api/users'
 
+document.addEventListener('DOMContentLoaded', () => {
+  const token = getToken();
+  if (!token) return 
+  window.location.href=`/home?token=${localStorage.getItem('token')}`
+});
+
 const sendRequest = async (url, payload = null, method = 'POST') => {
   const options = { method };
   if (payload) {
