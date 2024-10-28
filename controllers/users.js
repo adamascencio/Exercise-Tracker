@@ -35,9 +35,9 @@ async function login(req, res) {
     } else {
       return res.status(401).json({ error: 'Invalid password' });
     }
-    } catch (err) {
-      return res.status(500).json({ error: err });
-    }
+  } catch (err) {
+    return res.status(500).json({ error: err });
+  }
 }
 
 async function getAllUsers(req, res) {

@@ -22,7 +22,6 @@ const sendRequest = async (url, payload = null, method = 'POST') => {
   }
   const res = await fetch(url, options);
   if (res.ok) return res.json();
-  console.log(res);
   throw new Error('Bad Request')
 }
 
