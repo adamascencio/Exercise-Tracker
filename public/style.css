@@ -1,5 +1,10 @@
+:root {
+  --primary-bg-color: #87D37C;
+}
+
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
 body {
@@ -11,7 +16,6 @@ body {
 
 h1 {
   font-weight: bold;
-  
 }
 
 p {
@@ -21,7 +25,7 @@ p {
 form {
   margin-bottom: 25px;
   padding: 15px;
-  background-color: #87D37C;
+  background-color: var(--primary-bg-color);
   display: inline-block;
   width: 100%;
   max-width: 340px;
@@ -56,4 +60,18 @@ code {
   font-size: 1.2em;
   background-color: #FFFEC4;
   padding: 2px;
+}
+
+nav {
+  background-color: var(--primary-bg-color);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  justify-content: space-between;
 }

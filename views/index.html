@@ -9,7 +9,10 @@
 
   <body>
     <div class="container">
-      <h1>Exercise tracker</h1>
+      <nav>
+        <span><h1>Exercise Tracker</h1></span>
+        <span><a id="log-out">Log Out</a></span>
+      </nav>
       <form action="/api/users/:_id/exercises" id="exercise-form" method="post">
         <h2>Add exercises</h2>
         <p><code>POST /api/users/:_id/exercises</code></p>
@@ -19,21 +22,29 @@
         <input id="date" type="text" name="date" placeholder="date (yyyy-mm-dd)" />
         <input type="submit" value="Submit" />
       </form>
-      <p>
-        <strong>GET user's exercise log: </strong>
-        <code>GET /api/users/:_id/logs?[from][&amp;to][&amp;limit]</code>
-      </p>
-      <p><strong>[ ]</strong> = optional</p>
-      <p><strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> = number</p>
+      <div>
+        <p>
+          <strong>GET user's exercise log: </strong>
+          <code>GET /api/users/:_id/logs?[from][&amp;to][&amp;limit]</code>
+        </p>
+        <p><strong>[ ]</strong> = optional</p>
+        <p><strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> = number</p>
+      </div>
     </div>
     <script>
       const exerciseForm = document.getElementById("exercise-form");
+      const logOutLink = document.getElementById("log-out");
 
       exerciseForm.addEventListener("submit", () => {
         const userId = document.getElementById("uid").value;
         exerciseForm.action = `/api/users/${userId}/exercises`;
 
         exerciseForm.submit();
+      });
+
+      logOutLink.addEventListener("click", () => {
+        localStorage.removeItem("token");
+        window.location.href = "/";
       });
     </script>
   </body>
