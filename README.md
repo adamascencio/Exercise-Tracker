@@ -1,6 +1,6 @@
 # Exercise Tracker
 
-## Project Description
+## FreeCodeCamp Project Description
 Build a full stack JavaScript app that is functionally similar to this: [FreeCodeCamp Starter Project](https://exercise-tracker.freecodecamp.rocks/). 
 
 App should be able to:
@@ -11,8 +11,8 @@ App should be able to:
 
 Additional project requirements can be found [here](https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/exercise-tracker).
 
-## To Do
-- Add authentication to the app
+## Additional Challenges
+- Add authentication to the app ✅
 - Implement new front-end design
 
 ## Completed
